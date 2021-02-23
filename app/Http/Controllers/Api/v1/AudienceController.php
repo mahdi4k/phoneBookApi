@@ -24,11 +24,16 @@ class AudienceController extends Controller
         ]);
 
         if ($Validator->fails()) {
-            return response([
-                'data' =>  $Validator->errors(),
+            return response()->json([
+                'data' => $Validator->errors(),
                 'status' => 'error'
             ], 422);
         }
+
+
+        return response()->json([
+            'data' => 'مخاطب با موفقیت ثبت شد'
+        ], 200);
     }
 
 }

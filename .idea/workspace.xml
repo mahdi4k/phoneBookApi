@@ -22,7 +22,6 @@
     <list default="true" id="d218347e-7e45-49f6-bdf0-6e0127355b80" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/v1/AudienceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/v1/AudienceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +171,7 @@
       <option name="presentableId" value="Default" />
       <updated>1614020950035</updated>
       <workItem from="1614020953442" duration="2618000" />
-      <workItem from="1614060307518" duration="9817000" />
+      <workItem from="1614060307518" duration="14345000" />
     </task>
     <servers />
   </component>
@@ -191,10 +190,14 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="498" height="398" key="SwitcherDM" timestamp="1614074087188">
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1614078585512">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="498" height="398" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1614074087188" />
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1614078585512" />
+    <state width="498" height="398" key="SwitcherDM" timestamp="1614079509083">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="498" height="398" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1614079509083" />
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1614023397401" />
     <state x="460" y="162" width="555" height="566" key="find.popup" timestamp="1614060824485">
       <screen x="0" y="0" width="1366" height="728" />
