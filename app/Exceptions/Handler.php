@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,6 +53,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof ModelNotFoundException || $exception instanceof NotFoundHttpException){
+            return $request->expectsJson()
+                ? new JsonResponse([
+                    'data' => 'not found',
+                    'status' =>'error'
+                ],404)
+                : parent::render($request, $exception);
+        }
         return parent::render($request, $exception);
     }
 }

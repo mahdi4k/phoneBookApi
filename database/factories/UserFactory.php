@@ -26,3 +26,21 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+
+$factory->define(\App\AudienceCategory::class, function (Faker $faker) {
+    return [
+        'name'=>$faker->word()
+    ];
+});
+$factory->define(\App\Audience::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'status'=>$faker->numberBetween(0,1),
+        'phoneNumber'=>$faker->e164PhoneNumber,
+        'image'=>$faker->imageUrl(),
+        'user_id'=>User::all()->random()->id,
+        'category_id'=>\App\AudienceCategory::all()->random()->id
+    ];
+});

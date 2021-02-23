@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class audienceCategory extends Model
+class AudienceCategory extends Model
 {
     protected $fillable = ['name'];
 }
