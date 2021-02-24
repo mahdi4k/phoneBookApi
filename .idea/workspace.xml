@@ -201,15 +201,27 @@
     </state>
     <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1614078585512" />
     <state x="580" y="170" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1614096811607" />
-    <state width="498" height="398" key="SwitcherDM" timestamp="1614151633127">
+    <state x="492" y="119" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0" timestamp="1614157183138">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="498" height="398" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1614151633127" />
+    <state x="492" y="119" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0/0.0.1366.728@0.0.1366.728" timestamp="1614157183138" />
+    <state x="492" y="46" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1" timestamp="1614156742036">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="492" y="46" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1/0.0.1366.728@0.0.1366.728" timestamp="1614156742036" />
+    <state width="498" height="398" key="SwitcherDM" timestamp="1614164755345">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="498" height="398" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1614164755345" />
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1614097247722" />
-    <state x="460" y="162" width="555" height="566" key="find.popup" timestamp="1614060824485">
+    <state x="460" y="162" width="555" height="566" key="find.popup" timestamp="1614153261831">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="460" y="162" width="555" height="566" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1614060824485" />
+    <state x="460" y="162" width="555" height="566" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1614153261831" />
     <state x="646" y="236" width="627" height="568" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1614023366482" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1614153945818">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1614153945818" />
   </component>
 </project>

@@ -12,6 +12,7 @@ class Audience extends Model
 
     public function categoryAudience()
     {
+
         return $this->hasOne(AudienceCategory::class,'id','category_id');
     }
 
