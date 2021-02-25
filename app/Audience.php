@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Audience extends Model
 {
     protected $fillable = [
-        'name','image','status','phoneNumber','email' ,'user_id' , 'category_id'
+        'name','image','status','phoneNumber','email' ,'user_id' , 'category_id','shared'
     ];
 
     public function categoryAudience()
