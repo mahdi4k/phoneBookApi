@@ -40,7 +40,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
 
         //Admin
         Route::get('/admin/users','AdminController@allUser');
-        Route::get('/admin/user/deactivate/{id}','AdminController@deactivate');
+        Route::get('/admin/user/deactivate/{id}','AdminController@ ');
         Route::get('/admin/user/activate/{id}','AdminController@activate');
 
 
