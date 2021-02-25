@@ -22,27 +22,28 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'api_token'=>Str::random(60),
+        'api_token' => Str::random(60),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
-        'role'=>  $faker->randomElement(['admin' ,'user']),
+        'role' => $faker->randomElement(['admin', 'user']),
     ];
 });
 
 
 $factory->define(\App\AudienceCategory::class, function (Faker $faker) {
     return [
-        'name'=>$faker->word()
+        'category_name' => $faker->word(),
+        'user_id' => User::all()->random()->id,
     ];
 });
 $factory->define(\App\Audience::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'status'=>$faker->numberBetween(0,1),
-        'phoneNumber'=>$faker->e164PhoneNumber,
-        'image'=>$faker->imageUrl(),
-        'user_id'=>User::all()->random()->id,
-        'category_id'=>\App\AudienceCategory::all()->random()->id
+        'status' => $faker->numberBetween(0, 1),
+        'phoneNumber' => $faker->e164PhoneNumber,
+        'image' => $faker->imageUrl(),
+        'user_id' => User::all()->random()->id,
+        'category_id' => \App\AudienceCategory::all()->random()->id
     ];
 });

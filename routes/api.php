@@ -32,6 +32,10 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
         Route::put('/Audience/update/{id}', 'AudienceController@update');
         Route::delete('/Audience/delete/{id}', 'AudienceController@delete');
         Route::get('/Audience/share/{user_id}/{audience_id}','AudienceController@share');
+        Route::get('/Audience/approve/{id}','AudienceController@approveAudience');
+
+        Route::get('/Audience/category/all','AudienceCategoryController@index');
+        Route::post('/Audience/category','AudienceCategoryController@store');
 
     });
 });

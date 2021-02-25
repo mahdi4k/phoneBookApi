@@ -15,7 +15,8 @@ class CreateAudienceCategoriesTable extends Migration
     {
         Schema::create('audience_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('category_name');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

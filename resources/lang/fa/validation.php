@@ -70,7 +70,7 @@ return array(
         "array"   => ":attribute باسد شامل :size آیتم باشد.",
     ),
     "timezone"         => "The :attribute must be a valid zone.",
-    "unique"           => ":attribute قبلا انتخاب شده است.",
+    "unique"           => ":attribute قبلا ثبت شده است.",
     "url"              => "فرمت آدرس :attribute اشتباه است.",
     "exists_code"      => "کد ارسالی در سیستم وجود ندارد",
     "expire_code"      => "اعتبار کد ارسالی به پایان رسیده است",
@@ -103,6 +103,7 @@ return array(
     */
     'attributes' => array(
         "name" => "نام",
+        "category_name" => "دسته بندی",
         "username" => "نام کاربری",
         "email" => "پست الکترونیکی",
         "phoneNumber" => "شماره همراه",

@@ -11,6 +11,13 @@ use Illuminate\Http\Request;
 
 class AudienceController extends Controller
 {
+    private $userAuth;
+
+    public function __construct()
+    {
+        $this->userAuth = auth('api')->user();
+    }
+
     /**
      * api:auth
      * get auth user Audience
@@ -19,23 +26,23 @@ class AudienceController extends Controller
     public function index()
     {
         $audience = Audience::with('categoryAudience')
-            ->where('user_id', auth('api')->user()->id)
+            ->where('user_id', $this->userAuth->id)
             ->where('status', 1)
             ->get();
 
         $audienceNotApproved = Audience::with('categoryAudience')
-            ->where('user_id', auth('api')->user()->id)
+            ->where('user_id', $this->userAuth->id)
             ->where('status', 0)
             ->get();
         $sharedAudience = Audience::with('categoryAudience')
-            ->where('user_id', auth('api')->user()->id)
+            ->where('user_id', $this->userAuth->id)
             ->where('status', 0)
             ->whereNotNull('shared')
             ->get();
         return response()->json([
             'data' => $audience,
-            'audienceNotApproved' =>$audienceNotApproved,
-            'sharedAudience'=> $sharedAudience
+            'audienceNotApproved' => $audienceNotApproved,
+            'sharedAudience' => $sharedAudience
         ]);
     }
 
@@ -59,7 +66,7 @@ class AudienceController extends Controller
             'image' => $filename,
             'status' => 1,
             'category_id' => $request->category_id,
-            'user_id' => auth('api')->user()->id
+            'user_id' => $this->userAuth->id
         ]);
 
         return $this->ResponseJson($audience, $imagePath, $filename, 'مخاطب با موفقیت ثبت شد');
@@ -71,7 +78,7 @@ class AudienceController extends Controller
      */
     public function edit(Audience $audience)
     {
-        if ($audience->user_id == auth('api')->user()->id) {
+        if ($audience->user_id == $this->userAuth->id) {
             return response()->json([
                 'data' => $audience->with('categoryAudience')->get()
             ]);
@@ -97,7 +104,7 @@ class AudienceController extends Controller
             'image' => $filename,
             'status' => 1,
             'category_id' => $request->category_id,
-            'user_id' => auth('api')->user()->id
+            'user_id' => $this->userAuth->id
         ]);
         return $this->ResponseJson($audience, $imagePath, $filename, 'مخاطب با موفقیت ویرایش شد');
     }
@@ -133,7 +140,7 @@ class AudienceController extends Controller
             'status' => 0,
             'category_id' => $sAudience->category_id,
             'user_id' => $user_id,
-            'shared'=>auth('api')->user()->name
+            'shared' => $this->userAuth->name
         ]);
 
         return response()->json([
@@ -142,6 +149,23 @@ class AudienceController extends Controller
         ]);
     }
 
+    public function approveAudience($id)
+    {
+        $audience = Audience::where('id' , $id)->where('status', 0)->first();
+        if ($audience && $this->userAuth->id == $audience->user_id) {
+            $audience->update([
+                'status' => 1
+            ]);
+            return response()->json([
+                'message'=>'مخاطب با موفقیت فعال شد'
+            ]);
+        }else{
+            return response()->json([
+                'message'=>  'خطایی پیش آمده است'
+            ],403);
+        }
+
+    }
 
     /**
      * @param AudienceRequest $request
@@ -182,4 +206,6 @@ class AudienceController extends Controller
             'imagePath' => url("{$imagePath}/{$filename}")
         ], 200);
     }
+
+
 }
