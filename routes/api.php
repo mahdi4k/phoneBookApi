@@ -25,7 +25,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
             return auth()->user();
         });
         Route::get('users','UserController@allUser');
-
+        //Audience
         Route::get('/Audience', 'AudienceController@index');
         Route::post('/Audience', 'AudienceController@store');
         Route::get('/Audience/{audience}', 'AudienceController@edit');
@@ -34,8 +34,15 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
         Route::get('/Audience/share/{user_id}/{audience_id}','AudienceController@share');
         Route::get('/Audience/approve/{id}','AudienceController@approveAudience');
 
+        //Audience Category
         Route::get('/Audience/category/all','AudienceCategoryController@index');
         Route::post('/Audience/category','AudienceCategoryController@store');
+
+        //Admin
+        Route::get('/admin/users','AdminController@allUser');
+        Route::get('/admin/user/deactivate/{id}','AdminController@deactivate');
+        Route::get('/admin/user/activate/{id}','AdminController@activate');
+
 
     });
 });
