@@ -8,7 +8,6 @@ use App\Http\Requests\AudienceRequest;
 use Carbon\Carbon;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class AudienceController extends Controller
 {
@@ -19,10 +18,24 @@ class AudienceController extends Controller
      */
     public function index()
     {
-        $audience = Audience::with('categoryAudience')->where('user_id', auth('api')->user()->id)->get();
+        $audience = Audience::with('categoryAudience')
+            ->where('user_id', auth('api')->user()->id)
+            ->where('status', 1)
+            ->get();
+
+        $audienceNotApproved = Audience::with('categoryAudience')
+            ->where('user_id', auth('api')->user()->id)
+            ->where('status', 0)
+            ->get();
+        $sharedAudience = Audience::with('categoryAudience')
+            ->where('user_id', auth('api')->user()->id)
+            ->where('status', 0)
+            ->whereNotNull('shared')
+            ->get();
         return response()->json([
             'data' => $audience,
-
+            'audienceNotApproved' =>$audienceNotApproved,
+            'sharedAudience'=> $sharedAudience
         ]);
     }
 
@@ -91,15 +104,44 @@ class AudienceController extends Controller
 
     /**
      * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function delete($id)
     {
         $audience = Audience::findOrFail($id);
         $audience->delete();
         return response()->json([
-            'message' => 'مخاطب با موفقیت حذف شد' ,
+            'message' => 'مخاطب با موفقیت حذف شد',
         ], 200);
     }
+
+
+    /**
+     * @param $user_id
+     * @param $audience_id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function share($user_id, $audience_id)
+    {
+        $sAudience = Audience::where('id', $audience_id)->first();
+
+        $sharedAudience = Audience::create([
+            'name' => $sAudience->name,
+            'email' => $sAudience->email,
+            'phoneNumber' => $sAudience->phoneNumber,
+            'image' => $sAudience->image,
+            'status' => 0,
+            'category_id' => $sAudience->category_id,
+            'user_id' => $user_id,
+            'shared'=>auth('api')->user()->name
+        ]);
+
+        return response()->json([
+            'message' => 'مخاطب با موفقیت به اشتراک گذاشته شد',
+            'data' => $sharedAudience
+        ]);
+    }
+
 
     /**
      * @param AudienceRequest $request

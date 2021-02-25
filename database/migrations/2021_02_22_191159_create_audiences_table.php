@@ -24,6 +24,7 @@ class CreateAudiencesTable extends Migration
             $table->string('email');
             $table->boolean('status')->default(1);
             $table->string('phoneNumber');
+            $table->string('shared')->nullable();
             $table->string('image')->nullable();
 
         });

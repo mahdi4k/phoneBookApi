@@ -24,10 +24,14 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
         Route::get('/user', function () {
             return auth()->user();
         });
+        Route::get('users','UserController@allUser');
+
         Route::get('/Audience', 'AudienceController@index');
         Route::post('/Audience', 'AudienceController@store');
         Route::get('/Audience/{audience}', 'AudienceController@edit');
         Route::put('/Audience/update/{id}', 'AudienceController@update');
         Route::delete('/Audience/delete/{id}', 'AudienceController@delete');
+        Route::get('/Audience/share/{user_id}/{audience_id}','AudienceController@share');
+
     });
 });
