@@ -167,6 +167,14 @@ class AudienceController extends Controller
 
     }
 
+    public function categoryFilter($id)
+    {
+        $filteredAudience = Audience::with('categoryAudience')->where('category_id',$id)->where('user_Id',$this->userAuth->id)->get();
+        return response()->json([
+            'data'=> $filteredAudience
+        ]);
+    }
+
     /**
      * @param AudienceRequest $request
      * @param Filesystem $filesystem
