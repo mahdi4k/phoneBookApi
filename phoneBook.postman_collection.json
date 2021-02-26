@@ -1,0 +1,628 @@
+{
+	"info": {
+		"_postman_id": "78ba91a2-cf75-4063-8b3b-f56f69e79e31",
+		"name": "phoneBook",
+		"description": "phone Book api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Audience",
+			"item": [
+				{
+					"name": "store audience",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"value": "",
+									"type": "file",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "abbas",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "abbasss@yahoo.com",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "09351510925",
+									"type": "text"
+								},
+								{
+									"key": "api_token",
+									"value": "IIw9iPxhNl8Bjbm2YxLmB0y6am9vgUNKliBf10JMXnuFKU8t6tKFdOdUoWd0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/Audience?api_token=IIw9iPxhNl8Bjbm2YxLmB0y6am9vgUNKliBf10JMXnuFKU8t6tKFdOdUoWd0",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Audience"
+							],
+							"query": [
+								{
+									"key": "api_token",
+									"value": "IIw9iPxhNl8Bjbm2YxLmB0y6am9vgUNKliBf10JMXnuFKU8t6tKFdOdUoWd0"
+								}
+							]
+						},
+						"description": "create audience"
+					},
+					"response": []
+				},
+				{
+					"name": "auth user Audience list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "PMr8fVEjiSqafGtDyPscB3NAB6w1ImByjuP7KVYBPZbIaKez6Z239PYdIKcB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/Audience",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Audience"
+							]
+						},
+						"description": "user auth audience"
+					},
+					"response": []
+				},
+				{
+					"name": "edit Audience",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/Audience/1?api_token=IIw9iPxhNl8Bjbm2YxLmB0y6am9vgUNKliBf10JMXnuFKU8t6tKFdOdUoWd0",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Audience",
+								"1"
+							],
+							"query": [
+								{
+									"key": "api_token",
+									"value": "IIw9iPxhNl8Bjbm2YxLmB0y6am9vgUNKliBf10JMXnuFKU8t6tKFdOdUoWd0"
+								}
+							]
+						},
+						"description": "Edit Audience"
+					},
+					"response": []
+				},
+				{
+					"name": "update audience",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "mamad",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "mamad@yahoo.com",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "09103090896",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "",
+									"type": "file"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/Audience/update/2?api_token=IIw9iPxhNl8Bjbm2YxLmB0y6am9vgUNKliBf10JMXnuFKU8t6tKFdOdUoWd0",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Audience",
+								"update",
+								"2"
+							],
+							"query": [
+								{
+									"key": "api_token",
+									"value": "IIw9iPxhNl8Bjbm2YxLmB0y6am9vgUNKliBf10JMXnuFKU8t6tKFdOdUoWd0"
+								}
+							]
+						},
+						"description": "put "
+					},
+					"response": []
+				},
+				{
+					"name": "delete audience",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "IIw9iPxhNl8Bjbm2YxLmB0y6am9vgUNKliBf10JMXnuFKU8t6tKFdOdUoWd0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/Audience/delete/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Audience",
+								"delete",
+								"2"
+							]
+						},
+						"description": "remove Audience"
+					},
+					"response": []
+				},
+				{
+					"name": "filter category audience",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "PMr8fVEjiSqafGtDyPscB3NAB6w1ImByjuP7KVYBPZbIaKez6Z239PYdIKcB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/Audience/categoryFilter/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Audience",
+								"categoryFilter",
+								"4"
+							]
+						},
+						"description": "filter "
+					},
+					"response": []
+				},
+				{
+					"name": "share audience",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "PMr8fVEjiSqafGtDyPscB3NAB6w1ImByjuP7KVYBPZbIaKez6Z239PYdIKcB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/Audience/share/5/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"Audience",
+								"share",
+								"5",
+								"1"
+							]
+						},
+						"description": "first param => user_id\r\nsecond param => audience_id"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "abbas",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "lkessler@example.com",
+							"type": "text"
+						},
+						{
+							"key": "phoneNumber",
+							"value": "09351510925",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				},
+				"description": "login "
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/register?name=saeed&email=saeed@yahoo.com&password=12345678&password_confirmation=12345678",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"register"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "saeed"
+						},
+						{
+							"key": "email",
+							"value": "saeed@yahoo.com"
+						},
+						{
+							"key": "password",
+							"value": "12345678"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "12345678"
+						}
+					]
+				},
+				"description": "register a user"
+			},
+			"response": []
+		},
+		{
+			"name": "auth user categories",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e45EPPISmR51hNxcUNaoCRZukUOgg3Nvx5ilKthgV1G5nWnwZX6baoBLTlAx",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category_name",
+							"value": "family",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "user_id",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/admin/users/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"users",
+						""
+					]
+				},
+				"description": "Store category"
+			},
+			"response": []
+		},
+		{
+			"name": "admin user list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e45EPPISmR51hNxcUNaoCRZukUOgg3Nvx5ilKthgV1G5nWnwZX6baoBLTlAx",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/admin/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"users"
+					]
+				},
+				"description": "admin all user"
+			},
+			"response": []
+		},
+		{
+			"name": "admin deactivate user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e45EPPISmR51hNxcUNaoCRZukUOgg3Nvx5ilKthgV1G5nWnwZX6baoBLTlAx",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/admin/user/deactivate/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"user",
+						"deactivate",
+						"3"
+					]
+				},
+				"description": "admin deactivate user\r\n"
+			},
+			"response": []
+		}
+	]
+}
