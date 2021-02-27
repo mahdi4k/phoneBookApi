@@ -14,11 +14,11 @@ class CreateAudiencesTable extends Migration
     public function up()
     {
         Schema::create('audiences', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->timestamps();
-            $table->integer('user_id')->unsigned();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('category_id')->unsigned();
+            $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('audience_categories');
             $table->string('name');
             $table->string('email');
