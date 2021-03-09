@@ -4,3 +4,69 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@font-face {
+    font-family: IRANSansBold;
+    font-style: normal;
+    font-weight: 900;
+    src: url('../fonts/IRANSans/eot/IRANSansWeb_Black.eot');
+    src: url('../fonts/IRANSans/eot/IRANSansWeb_Black.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('../fonts/IRANSans/woff2/IRANSansWeb_Black.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('../fonts/IRANSans/woff/IRANSansWeb_Black.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('../fonts/IRANSans/ttf/IRANSansWeb_Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 900;
+    src: url('../fonts/IRANSans/eot/IRANSansWeb.eot');
+    src: url('../fonts/IRANSans/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('../fonts/IRANSans/woff2/IRANSansWeb.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('../fonts/IRANSans/woff/IRANSansWeb.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('../fonts/IRANSans/ttf/IRANSansWeb.ttf') format('truetype');
+}
+
+body {
+    color: aliceblue;
+
+    background-color: #8BC6EC;
+    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+
+    font-family: IRANSans, IRANSansBold serif;
+}
+
+
+.jum {
+    padding: 30px 30px;
+    padding-bottom: 220px;
+    width: 90%;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.3);
+
+}
+
+.tableh1 th {
+    width: 30%;
+    font-family: IRANSansBold, serif;
+}
+
+.icon {
+    position: absolute;
+    top: 18px;
+    left: 88%;
+    font-size: 20px;
+
+
+}
+
+.alert {
+    display: none;
+}
+
+.btn1 {
+    margin-bottom: 20px;
+}
+
+.dir-rtl{
+    direction: rtl;
+}
+.table thead th{
+    color: white;
+}
+.table td{
+    color: white;
+}
