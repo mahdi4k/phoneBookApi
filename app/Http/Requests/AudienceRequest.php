@@ -28,7 +28,7 @@ class AudienceRequest extends FormRequest
             'phoneNumber' => 'required|regex:/(09)[0-9]{9}/|digits_between:10,11',
             'email' => 'required|email',
             'category_id' => 'required',
-            'image' => 'nullable|mimes:jpeg,bmp,png|max:5120'
+            'image' => 'nullable'
         ];
     }
 }

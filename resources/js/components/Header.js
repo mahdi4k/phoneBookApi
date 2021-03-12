@@ -5,17 +5,22 @@ import Container from "react-bootstrap/Container";
 
 const Header = () => {
 
-    useEffect(()=>{
+    const [userInfo, setUserInfo] = useState('')
+    useEffect(() => {
 
         if (localStorage.getItem('userInfo') !== null) {
-            const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+
+            setUserInfo(JSON.parse(localStorage.getItem('userInfo')))
+
         }
-    },[])
 
-    const logoutHandler = () => {
-      }
 
-    let userInfo;
+
+    }, [setUserInfo])
+
+
+
+    let logoutHandler;
     return (
         <header>
 

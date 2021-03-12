@@ -11,11 +11,11 @@ function Main() {
     return (
 
         <Router>
-            <Header/>
+
 
                 <Switch>
-                    <Route path='/login' component={LoginScreen}/>
-                    <Route path='/' component={HomeScreen} exact />
+                    <Route  path='/login' component={LoginScreen}/>
+                    <Route   path='/' component={HomeScreen} exact />
                     <Route path='/register' component={RegisterScreen}/>
                 </Switch>
 

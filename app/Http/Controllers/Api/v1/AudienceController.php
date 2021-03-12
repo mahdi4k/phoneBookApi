@@ -8,6 +8,9 @@ use App\Http\Requests\AudienceRequest;
 use Carbon\Carbon;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AudienceController extends Controller
 {
@@ -55,10 +58,25 @@ class AudienceController extends Controller
      */
     public function store(AudienceRequest $request, Filesystem $filesystem)
     {
+        if ($request->image == 'default.jpg'){
+            $filename = 'default.jpg';
+            $imagePath ='resources/js/upload';
 
-        list($imagePath, $filename) = $this->uploadImage($request, $filesystem);
+        } else{
+            $image_64 = $request->image; //your base64 encoded data
 
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
 
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+
+            $image = str_replace($replace, '', $image_64);
+
+            $image = str_replace(' ', '+', $image);
+
+            $filename = Str::random(10) . '.' . $extension;
+
+            $imagePath = Storage::disk('js_folder')->put($filename, base64_decode($image));
+        }
         $audience = Audience::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -151,27 +169,27 @@ class AudienceController extends Controller
 
     public function approveAudience($id)
     {
-        $audience = Audience::where('id' , $id)->where('status', 0)->first();
+        $audience = Audience::where('id', $id)->where('status', 0)->first();
         if ($audience && $this->userAuth->id == $audience->user_id) {
             $audience->update([
                 'status' => 1
             ]);
             return response()->json([
-                'message'=>'مخاطب با موفقیت فعال شد'
+                'message' => 'مخاطب با موفقیت فعال شد'
             ]);
-        }else{
+        } else {
             return response()->json([
-                'message'=>  'خطایی پیش آمده است'
-            ],403);
+                'message' => 'خطایی پیش آمده است'
+            ], 403);
         }
 
     }
 
     public function categoryFilter($id)
     {
-        $filteredAudience = Audience::with('categoryAudience')->where('category_id',$id)->where('user_Id',$this->userAuth->id)->get();
+        $filteredAudience = Audience::with('categoryAudience')->where('category_id', $id)->where('user_Id', $this->userAuth->id)->get();
         return response()->json([
-            'data'=> $filteredAudience
+            'data' => $filteredAudience
         ]);
     }
 

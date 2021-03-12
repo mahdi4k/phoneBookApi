@@ -21,15 +21,17 @@
   <component name="ChangeListManager">
     <list default="true" id="d218347e-7e45-49f6-bdf0-6e0127355b80" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/v1/AudienceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/v1/AudienceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/AudienceRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/AudienceRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Screens/HomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Screens/LoginScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Screens/LoginScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Screens/RegisterScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Screens/RegisterScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/AddAudience.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AddAudience.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +40,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -174,6 +178,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mahdi\Desktop\phoneBookApi\public" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
@@ -207,12 +216,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="580" y="170" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1615219655045">
@@ -233,24 +243,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="439" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1614269713329" />
-    <state x="461" y="162" key="SettingsEditor" timestamp="1614268436978">
+    <state x="461" y="162" key="SettingsEditor" timestamp="1615478544443">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1614268436978" />
-    <state width="498" height="398" key="SwitcherDM" timestamp="1615288332966">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1615478544443" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1615539211899">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="398" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1615288332966" />
-    <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1615231053015" />
-    <state x="646" y="236" width="627" height="568" key="find.popup" timestamp="1615219652420">
+    <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1615539211899" />
+    <state x="646" y="236" width="758" height="568" key="find.popup" timestamp="1615462562201">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="460" y="162" width="555" height="566" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1614153261831" />
-    <state x="646" y="236" width="627" height="568" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1615219652420" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1614153945818">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="646" y="236" width="758" height="568" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1615462562201" />
+    <state x="476" y="231" key="run.anything.popup" timestamp="1615489212926">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1614153945818" />
+    <state x="476" y="231" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1615489212926" />
     <state x="443" y="158" width="479" height="475" key="search.everywhere.popup" timestamp="1615272196750">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
