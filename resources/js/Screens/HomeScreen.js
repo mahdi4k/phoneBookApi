@@ -5,10 +5,14 @@ import {v4 as uuid_v4} from "uuid";
 import Header from "../components/Header";
 import Message from "../components/Message";
 import Image from "react-bootstrap/Image";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import UpdateAudience from "../components/UpdateAudience";
+
 
 const HomeScreen = ({history}) => {
-    const [formMessage , setFormMessage] = useState(false)
-    const [haveError,setHaveError] = useState('false')
+    const [formMessage, setFormMessage] = useState(false)
+    const [haveError, setHaveError] = useState('false')
     const [message, setMessage] = useState('')
     const [audience, setAudience] = useState({})
     const [NewAudience, setNewAudience] = useState({})
@@ -17,12 +21,15 @@ const HomeScreen = ({history}) => {
     const [notApprovedAudience, setNotApprovedAudience] = useState({})
     const [loading, setLoading] = useState(true)
     const [userInfo, setUserInfo] = useState('')
-
+    const [audienceId , setAudienceId] = useState('')
+    const [show, setShow] = useState(false);
+    const [audienceUpdateSelected , setAudienceUpdateSelected] = useState('')
+    const [filterdAudience,setFilterAudience] = useState(0)
     useEffect(() => {
 
         if (localStorage.getItem('userInfo') === null) {
             history.push('/login')
-        }else {
+        } else {
             setUserInfo(JSON.parse(localStorage.getItem('userInfo')))
         }
 
@@ -45,6 +52,7 @@ const HomeScreen = ({history}) => {
                 error.response && setMessage(error.response.data.errors)
             }
         }
+
         async function getUserCategories() {
             try {
                 const config = {
@@ -60,14 +68,15 @@ const HomeScreen = ({history}) => {
             } catch (error) {
                 error.response && setMessage(error.response.data.errors)
             }
+            console.log('ssss')
         }
 
         getAudience()
         getUserCategories()
 
-    }, [setAudience,setSharedAudience,setUserInfo,setNotApprovedAudience,setLoading])
+    }, [setAudience, setSharedAudience, setUserInfo, setNotApprovedAudience, setLoading])
 
-    const deleteHandler =async (id,e)=>{
+    const deleteHandler = async (id, e) => {
         e.preventDefault()
         const api_token = JSON.parse(localStorage.getItem('user_api'))
         try {
@@ -77,19 +86,47 @@ const HomeScreen = ({history}) => {
                 }
             }
 
-             await axios.delete(`/api/v1/Audience/delete/${id}`, config)
+            await axios.delete(`/api/v1/Audience/delete/${id}`, config)
             setAudience(audience.filter(item => item.id !== id))
         } catch (error) {
-          //  error.response && setMessage(error.response.data.errors)
-            console.log(error)
+            //  error.response && setMessage(error.response.data.errors)
+
         }
+    }
+    const handleClose = () => setShow(false);
+    const handleShow = (id) => {
+        setShow(true)
+        setAudienceId(id)
+        setAudienceUpdateSelected(audience.find(el => el.id === id))
+
+    };
+    const filterAudience = async (id,e)=>{
+
+        const api_token = JSON.parse(localStorage.getItem('user_api'))
+
+        try {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${api_token}`
+                }
+            }
+
+            const {data}  = await axios.get(`/api/v1/Audience/categoryFilter/${id}`, config)
+            setFilterAudience(id)
+            setAudience(Object.values(data.data))
+
+        } catch (error) {
+            //  error.response && setMessage(error.response.data.errors)
+
+        }
+
     }
 
     return (
         <>
             <Header/>
 
-             {loading ? <Loader/> :
+            {loading ? <Loader/> :
                 <div className="jumbotron mt-3 jum">
 
                     <div className="row flex-row-reverse  ">
@@ -98,14 +135,15 @@ const HomeScreen = ({history}) => {
                         <AddAudience apiToken={userInfo.api_token} userCategories={userCategories}/>
 
                         <div className="col-lg-9">
-                            <div className="form-group text-right">
+                            <div id="content-filter" className="form-group text-right">
                                 <label htmlFor="content-filter">مخاطبین</label>
-                                <select className="form-control dir-rtl content-category w-50 ml-auto"
-                                        id="content-filter">
-                                    {userCategories.map(el=>(
-                                        <option key={uuid_v4()} >{el.category_name}</option>
+                                 
+                                <select value={filterdAudience} onChange={e => filterAudience(e.target.value,e)} className="form-control dir-rtl content-category w-50 ml-auto"
+                                        >
+                                    <option key={uuid_v4()} value={0}  >همه گروه ها</option>
+                                    {userCategories.map(el => (
+                                        <option value={el.id} key={uuid_v4()}>{el.category_name}</option>
                                     ))}
-
 
                                 </select>
                             </div>
@@ -126,14 +164,21 @@ const HomeScreen = ({history}) => {
                                     audience.map((el) => (
                                         <tr key={uuid_v4()}>
                                             <td className='text-center' key={uuid_v4()} className="text-center">
-                                                <button><i className="far text-white fa-edit mr-3"></i></button>
-                                                <button onClick={(e)=>deleteHandler(el.id,e)} ><i className="fas text-danger fa-trash"></i></button>
+                                                <button onClick={(e)=>handleShow(el.id)} className='btn'><i className="far text-white fa-edit mr-3"> </i></button>
+
+                                                <button className='btn btn-outline-danger' onClick={(e) => deleteHandler(el.id, e)}><i
+                                                    className="fas text-danger fa-trash"> </i></button>
                                             </td>
-                                            <td className='text-center' key={uuid_v4()}>{el.category_audience.category_name}</td>
+                                            <td className='text-center'
+                                                key={uuid_v4()}>{el.category_audience.category_name}</td>
 
                                             <td className='text-center' key={uuid_v4()}>{el.phoneNumber}</td>
                                             <td className='text-center' key={uuid_v4()}>{el.email}</td>
-                                            <td className='text-center' key={uuid_v4()}><div className='d-flex flex-nowrap justify-content-end align-items-center'>{el.name}<Image className='samll-bg' fluid src={`/uploads/${el.image}`}/></div></td>
+                                            <td className='text-center' key={uuid_v4()}>
+                                                <div
+                                                    className='d-flex flex-nowrap justify-content-end align-items-center'>{el.name}<Image
+                                                    className='samll-bg' fluid src={`/uploads/${el.image}`}/></div>
+                                            </td>
                                         </tr>
                                     ))}
 
@@ -148,6 +193,18 @@ const HomeScreen = ({history}) => {
 
 
                     </div>
+                    <Modal size="lg" show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+
+                        </Modal.Header>
+                        <Modal.Body><UpdateAudience audienceSelected={audienceUpdateSelected} apiToken={userInfo.api_token} userCategories={userCategories} /></Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                لغو
+                            </Button>
+
+                        </Modal.Footer>
+                    </Modal>
                 </div>
             }
         </>

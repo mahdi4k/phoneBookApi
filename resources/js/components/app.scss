@@ -70,9 +70,16 @@ body {
     color: white;
 }
 .samll-bg{
-    width: 50px;
+    width: 45px;
+    border-radius: 7px;
+    margin-left: 6px;
 }
-
+.modal-content{
+ color: black;
+}
+.form-control{
+    text-align: right;
+}
 .loginForm{
     direction: rtl;
     h1{

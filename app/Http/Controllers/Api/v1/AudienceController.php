@@ -63,19 +63,7 @@ class AudienceController extends Controller
             $imagePath ='resources/js/upload';
 
         } else{
-            $image_64 = $request->image; //your base64 encoded data
-
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
-
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-
-            $image = str_replace($replace, '', $image_64);
-
-            $image = str_replace(' ', '+', $image);
-
-            $filename = Str::random(10) . '.' . $extension;
-
-            $imagePath = Storage::disk('js_folder')->put($filename, base64_decode($image));
+            list($filename, $imagePath) = $this->imgUpload($request);
         }
         $audience = Audience::create([
             'name' => $request->name,
@@ -110,11 +98,16 @@ class AudienceController extends Controller
     public function update(AudienceRequest $request, $id, Filesystem $filesystem)
     {
 
-        list($imagePath, $filename) = $this->uploadImage($request, $filesystem);
 
         $audience = Audience::findOrFail($id);
 
+        if ($request->image == 'default.jpg'){
+            $filename = 'default.jpg';
+            $imagePath ='resources/js/upload';
 
+        } else{
+            list($filename, $imagePath) = $this->imgUpload($request);
+        }
         $audience->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -187,35 +180,22 @@ class AudienceController extends Controller
 
     public function categoryFilter($id)
     {
-        $filteredAudience = Audience::with('categoryAudience')->where('category_id', $id)->where('user_Id', $this->userAuth->id)->get();
-        return response()->json([
-            'data' => $filteredAudience
-        ]);
-    }
-
-    /**
-     * @param AudienceRequest $request
-     * @param Filesystem $filesystem
-     * @return array
-     */
-    public function uploadImage(AudienceRequest $request, Filesystem $filesystem)
-    {
-        if ($request->hasFile('image')) {
-            $imageFile = $request->file('image');
-
-            $imagePath = "/upload/images";
-            $filename = $imageFile->getClientOriginalName();
-
-            if ($filesystem->exists(public_path("{$imagePath}/${filename}"))) {
-                $filename = Carbon::now()->timestamp . "-{$filename}";
-            }
-            $imageFile->move(public_path($imagePath), $filename);
-        } else {
-            $filename = 'Q5yV]a.jpg';
-            $imagePath = "/upload/images";
+        if ($id == 0){
+            $filteredAudience = Audience::with('categoryAudience')->where('user_Id', $this->userAuth->id)->get();
+            return response()->json([
+                'data' => $filteredAudience
+            ]);
+        }else{
+            $filteredAudience = Audience::with('categoryAudience')->where('category_id',$id)->where('user_Id', $this->userAuth->id)->get();
+            return response()->json([
+                'data' => $filteredAudience
+            ]);
         }
-        return array($imagePath, $filename);
+
+
     }
+
+
 
     /**
      * @param $audience
@@ -231,6 +211,28 @@ class AudienceController extends Controller
             'data' => $audience,
             'imagePath' => url("{$imagePath}/{$filename}")
         ], 200);
+    }
+
+    /**
+     * @param AudienceRequest $request
+     * @return array
+     */
+    public function imgUpload(AudienceRequest $request)
+    {
+        $image_64 = $request->image; //your base64 encoded data
+
+        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
+
+        $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+
+        $image = str_replace($replace, '', $image_64);
+
+        $image = str_replace(' ', '+', $image);
+
+        $filename = Str::random(10) . '.' . $extension;
+
+        $imagePath = Storage::disk('js_folder')->put($filename, base64_decode($image));
+        return array($filename, $imagePath);
     }
 
 

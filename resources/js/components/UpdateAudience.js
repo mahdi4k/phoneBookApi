@@ -1,13 +1,13 @@
-import React, { useState} from 'react';
+import React, {useEffect, useState} from 'react';
  import Message from "../components/Message";
 
-const AddAudience = ({userCategories, apiToken,history}) => {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
+const UpdateAudience = ({userCategories, apiToken,audienceSelected}) => {
+    const [name, setName] = useState(audienceSelected.name)
+    const [email, setEmail] = useState(audienceSelected.email)
+    const [phoneNumber, setPhoneNumber] = useState(audienceSelected.phoneNumber)
     const [status, setStatus] = useState(1)
-    const [image, setImage] = useState('default.jpg')
-    const [category_id, setCategory_id] = useState('')
+    const [image, setImage] = useState(audienceSelected.image)
+    const [category_id, setCategory_id] = useState(audienceSelected.category_id)
     const [formMessage, setFormMessage] = useState('')
 
 
@@ -18,7 +18,7 @@ const AddAudience = ({userCategories, apiToken,history}) => {
 
 
         try {
-            await axios.post('/api/v1/Audience', {
+            await axios.put(`/api/v1/Audience/update/${audienceSelected.id}`, {
                     name,
                     email,
                     phoneNumber,
@@ -51,9 +51,9 @@ const AddAudience = ({userCategories, apiToken,history}) => {
 
     return (
         <>
-            <div className="col-lg-3 inp">
+            <div className="col  inp">
 
-                <h5 className="mt-2 text-right">افزودن مخاطب</h5>
+                <h5 className="mt-2 text-right">ویرایش مخاطب</h5>
                 {formMessage && <Message variant='danger' ErrorsMessage={formMessage}/>}
                 <form onSubmit={submitHandler}>
                     <div className="form-group text-right mt-5">
@@ -85,7 +85,7 @@ const AddAudience = ({userCategories, apiToken,history}) => {
                                id="customFile"/>
                         <label className="custom-file-label" htmlFor="customFile">عکس پروفایل</label>
                     </div>
-                    <div className="form-group text-right">
+                    <div className="form-group mt-3 text-right">
                         <label htmlFor="exampleFormControlSelect1">گروه مخاطب</label>
                         <select value={category_id || ''}
                                 onChange={(e) => setCategory_id(e.target.value)}
@@ -99,7 +99,7 @@ const AddAudience = ({userCategories, apiToken,history}) => {
                         </select>
                     </div>
                     <button  type='submit'
-                            className="btn btn-info w-100 btn1">افزودن
+                             className="btn btn-info w-100 btn1">ویرایش
                     </button>
                 </form>
             </div>
@@ -107,4 +107,4 @@ const AddAudience = ({userCategories, apiToken,history}) => {
     );
 };
 
-export default AddAudience;
+export default UpdateAudience;
