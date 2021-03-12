@@ -30,6 +30,7 @@ const RegisterScreen = ({location, history}) => {
             }, config)
 
             localStorage.setItem('userInfo', JSON.stringify(data))
+            localStorage.setItem('user_api', JSON.stringify(data.api_token))
             history.push('/')
         } catch (error) {
             error.response && setMessage(error.response.data.errors)
@@ -38,7 +39,7 @@ const RegisterScreen = ({location, history}) => {
     return (
        <>
         <Header/>
-           <Container>
+           <Container className='bg-white text-dark text-right mt-3 pt-4'>
                <h1>ثبت نام</h1>
                {message && <Message variant='danger' ErrorsMessage={message}/>}
                <Form onSubmit={submitHandler}>

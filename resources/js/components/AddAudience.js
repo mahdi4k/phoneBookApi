@@ -7,9 +7,10 @@ const AddAudience = ({userCategories, apiToken,history}) => {
     const [phoneNumber, setPhoneNumber] = useState('')
     const [status, setStatus] = useState(1)
     const [image, setImage] = useState('default.jpg')
-    const [category_id, setCategory_id] = useState('')
+    const [category_id, setCategory_id] = useState(userCategories[0]['id'])
     const [formMessage, setFormMessage] = useState('')
 
+    const [category_name , setCategory_name] = useState('')
 
     const submitHandler = async (e) => {
         e.preventDefault()
@@ -87,16 +88,29 @@ const AddAudience = ({userCategories, apiToken,history}) => {
                     </div>
                     <div className="form-group text-right">
                         <label htmlFor="exampleFormControlSelect1">گروه مخاطب</label>
-                        <select value={category_id || ''}
-                                onChange={(e) => setCategory_id(e.target.value)}
-                                className="form-control dir-rtl content-category" id="exampleFormControlSelect1">
-                            <option>انتخاب دسته بندی</option>
+
+                        {userCategories.length > 0 ? <select value={category_id || ''}
+                                                             onChange={(e) => setCategory_id(e.target.value)}
+                                                             className="form-control dir-rtl content-category" id="exampleFormControlSelect1">
                             {userCategories.map(el => (
                                 <option value={el.id} key={el.id}>{el.category_name}</option>
                             ))}
 
 
-                        </select>
+                        </select> :
+                        <div>
+                            <p>افزودن دسته بندی</p>
+                            <div className="form-group text-right mt-3">
+                                <input value={category_name || ''}
+                                       onChange={(e) => setCategory_name(e.target.value)}
+                                       type="text"
+                                       className="form-control"
+                                       id="Content-phone"/>
+                            </div>
+                        </div>
+
+                        }
+
                     </div>
                     <button  type='submit'
                             className="btn btn-info w-100 btn1">افزودن

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import AddAudience from "../components/AddAudience";
 import Loader from "../components/Loader";
 import {v4 as uuid_v4} from "uuid";
@@ -11,20 +11,18 @@ import UpdateAudience from "../components/UpdateAudience";
 
 
 const HomeScreen = ({history}) => {
-    const [formMessage, setFormMessage] = useState(false)
-    const [haveError, setHaveError] = useState('false')
     const [message, setMessage] = useState('')
     const [audience, setAudience] = useState({})
-    const [NewAudience, setNewAudience] = useState({})
     const [userCategories, setUserCategories] = useState({})
     const [sharedAudience, setSharedAudience] = useState({})
     const [notApprovedAudience, setNotApprovedAudience] = useState({})
     const [loading, setLoading] = useState(true)
     const [userInfo, setUserInfo] = useState('')
-    const [audienceId , setAudienceId] = useState('')
+    const [audienceId, setAudienceId] = useState('')
     const [show, setShow] = useState(false);
-    const [audienceUpdateSelected , setAudienceUpdateSelected] = useState('')
-    const [filterdAudience,setFilterAudience] = useState(0)
+    const [audienceUpdateSelected, setAudienceUpdateSelected] = useState('')
+    const [filterdAudience, setFilterAudience] = useState(0)
+
     useEffect(() => {
 
         if (localStorage.getItem('userInfo') === null) {
@@ -68,13 +66,41 @@ const HomeScreen = ({history}) => {
             } catch (error) {
                 error.response && setMessage(error.response.data.errors)
             }
-            console.log('ssss')
         }
 
         getAudience()
         getUserCategories()
 
     }, [setAudience, setSharedAudience, setUserInfo, setNotApprovedAudience, setLoading])
+
+    useEffect(() => {
+        console.log(userCategories)
+        const api_token = JSON.parse(localStorage.getItem('user_api'))
+        if (userCategories.length === 0) {
+            async function CreateDefaultCategory() {
+                try {
+                    const config = {
+                        headers: {
+                            Authorization: `Bearer ${api_token}`
+                        }
+                    }
+
+                    await axios.post(`/api/v1/Audience/category`, {
+                        category_name: 'بدون دسته بندی'
+                    }, config)
+                    window.location.reload()
+                } catch (error) {
+                    console.log(error)
+                }
+
+            }
+
+            CreateDefaultCategory()
+        }
+
+
+    }, [userCategories])
+
 
     const deleteHandler = async (id, e) => {
         e.preventDefault()
@@ -100,7 +126,7 @@ const HomeScreen = ({history}) => {
         setAudienceUpdateSelected(audience.find(el => el.id === id))
 
     };
-    const filterAudience = async (id,e)=>{
+    const filterAudience = async (id, e) => {
 
         const api_token = JSON.parse(localStorage.getItem('user_api'))
 
@@ -111,7 +137,7 @@ const HomeScreen = ({history}) => {
                 }
             }
 
-            const {data}  = await axios.get(`/api/v1/Audience/categoryFilter/${id}`, config)
+            const {data} = await axios.get(`/api/v1/Audience/categoryFilter/${id}`, config)
             setFilterAudience(id)
             setAudience(Object.values(data.data))
 
@@ -137,10 +163,11 @@ const HomeScreen = ({history}) => {
                         <div className="col-lg-9">
                             <div id="content-filter" className="form-group text-right">
                                 <label htmlFor="content-filter">مخاطبین</label>
-                                 
-                                <select value={filterdAudience} onChange={e => filterAudience(e.target.value,e)} className="form-control dir-rtl content-category w-50 ml-auto"
-                                        >
-                                    <option key={uuid_v4()} value={0}  >همه گروه ها</option>
+
+                                <select value={filterdAudience} onChange={e => filterAudience(e.target.value, e)}
+                                        className="form-control dir-rtl content-category w-50 ml-auto"
+                                >
+                                    <option key={uuid_v4()} value={0}>همه گروه ها</option>
                                     {userCategories.map(el => (
                                         <option value={el.id} key={uuid_v4()}>{el.category_name}</option>
                                     ))}
@@ -164,9 +191,11 @@ const HomeScreen = ({history}) => {
                                     audience.map((el) => (
                                         <tr key={uuid_v4()}>
                                             <td className='text-center' key={uuid_v4()} className="text-center">
-                                                <button onClick={(e)=>handleShow(el.id)} className='btn'><i className="far text-white fa-edit mr-3"> </i></button>
+                                                <button onClick={(e) => handleShow(el.id)} className='btn'><i
+                                                    className="far text-white fa-edit mr-3"> </i></button>
 
-                                                <button className='btn btn-outline-danger' onClick={(e) => deleteHandler(el.id, e)}><i
+                                                <button className='btn btn-outline-danger'
+                                                        onClick={(e) => deleteHandler(el.id, e)}><i
                                                     className="fas text-danger fa-trash"> </i></button>
                                             </td>
                                             <td className='text-center'
@@ -197,7 +226,9 @@ const HomeScreen = ({history}) => {
                         <Modal.Header closeButton>
 
                         </Modal.Header>
-                        <Modal.Body><UpdateAudience audienceSelected={audienceUpdateSelected} apiToken={userInfo.api_token} userCategories={userCategories} /></Modal.Body>
+                        <Modal.Body><UpdateAudience audienceSelected={audienceUpdateSelected}
+                                                    apiToken={userInfo.api_token}
+                                                    userCategories={userCategories}/></Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleClose}>
                                 لغو

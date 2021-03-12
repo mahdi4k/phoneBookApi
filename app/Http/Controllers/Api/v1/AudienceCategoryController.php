@@ -29,7 +29,7 @@ class AudienceCategoryController extends Controller
     {
 
         $request->validate([
-            'category_name' => 'required|string|max:30|unique:App\AudienceCategory,category_name'
+            'category_name' => 'required|string|max:30'
         ]);
 
         $category = AudienceCategory::create([

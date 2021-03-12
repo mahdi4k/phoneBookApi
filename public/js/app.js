@@ -87337,75 +87337,60 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var HomeScreen = function HomeScreen(_ref) {
   var history = _ref.history;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState2 = _slicedToArray(_useState, 2),
-      formMessage = _useState2[0],
-      setFormMessage = _useState2[1];
+      message = _useState2[0],
+      setMessage = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('false'),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
       _useState4 = _slicedToArray(_useState3, 2),
-      haveError = _useState4[0],
-      setHaveError = _useState4[1];
+      audience = _useState4[0],
+      setAudience = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
       _useState6 = _slicedToArray(_useState5, 2),
-      message = _useState6[0],
-      setMessage = _useState6[1];
+      userCategories = _useState6[0],
+      setUserCategories = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
       _useState8 = _slicedToArray(_useState7, 2),
-      audience = _useState8[0],
-      setAudience = _useState8[1];
+      sharedAudience = _useState8[0],
+      setSharedAudience = _useState8[1];
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
       _useState10 = _slicedToArray(_useState9, 2),
-      NewAudience = _useState10[0],
-      setNewAudience = _useState10[1];
+      notApprovedAudience = _useState10[0],
+      setNotApprovedAudience = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
       _useState12 = _slicedToArray(_useState11, 2),
-      userCategories = _useState12[0],
-      setUserCategories = _useState12[1];
+      loading = _useState12[0],
+      setLoading = _useState12[1];
 
-  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState14 = _slicedToArray(_useState13, 2),
-      sharedAudience = _useState14[0],
-      setSharedAudience = _useState14[1];
+      userInfo = _useState14[0],
+      setUserInfo = _useState14[1];
 
-  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState16 = _slicedToArray(_useState15, 2),
-      notApprovedAudience = _useState16[0],
-      setNotApprovedAudience = _useState16[1];
+      audienceId = _useState16[0],
+      setAudienceId = _useState16[1];
 
-  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState18 = _slicedToArray(_useState17, 2),
-      loading = _useState18[0],
-      setLoading = _useState18[1];
+      show = _useState18[0],
+      setShow = _useState18[1];
 
   var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState20 = _slicedToArray(_useState19, 2),
-      userInfo = _useState20[0],
-      setUserInfo = _useState20[1];
+      audienceUpdateSelected = _useState20[0],
+      setAudienceUpdateSelected = _useState20[1];
 
-  var _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+  var _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
       _useState22 = _slicedToArray(_useState21, 2),
-      audienceId = _useState22[0],
-      setAudienceId = _useState22[1];
-
-  var _useState23 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
-      _useState24 = _slicedToArray(_useState23, 2),
-      show = _useState24[0],
-      setShow = _useState24[1];
-
-  var _useState25 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
-      _useState26 = _slicedToArray(_useState25, 2),
-      audienceUpdateSelected = _useState26[0],
-      setAudienceUpdateSelected = _useState26[1];
-
-  var _useState27 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
-      _useState28 = _slicedToArray(_useState27, 2),
-      filterdAudience = _useState28[0],
-      setFilterAudience = _useState28[1];
+      filterdAudience = _useState22[0],
+      setFilterAudience = _useState22[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     if (localStorage.getItem('userInfo') === null) {
@@ -87496,9 +87481,6 @@ var HomeScreen = function HomeScreen(_ref) {
                 _context2.t0.response && setMessage(_context2.t0.response.data.errors);
 
               case 13:
-                console.log('ssss');
-
-              case 14:
               case "end":
                 return _context2.stop();
             }
@@ -87511,46 +87493,95 @@ var HomeScreen = function HomeScreen(_ref) {
     getAudience();
     getUserCategories();
   }, [setAudience, setSharedAudience, setUserInfo, setNotApprovedAudience, setLoading]);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    console.log(userCategories);
+    var api_token = JSON.parse(localStorage.getItem('user_api'));
+
+    if (userCategories.length === 0) {
+      var CreateDefaultCategory = /*#__PURE__*/function () {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+          var config;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  _context3.prev = 0;
+                  config = {
+                    headers: {
+                      Authorization: "Bearer ".concat(api_token)
+                    }
+                  };
+                  _context3.next = 4;
+                  return axios.post("/api/v1/Audience/category", {
+                    category_name: 'بدون دسته بندی'
+                  }, config);
+
+                case 4:
+                  window.location.reload();
+                  _context3.next = 10;
+                  break;
+
+                case 7:
+                  _context3.prev = 7;
+                  _context3.t0 = _context3["catch"](0);
+                  console.log(_context3.t0);
+
+                case 10:
+                case "end":
+                  return _context3.stop();
+              }
+            }
+          }, _callee3, null, [[0, 7]]);
+        }));
+
+        return function CreateDefaultCategory() {
+          return _ref2.apply(this, arguments);
+        };
+      }();
+
+      CreateDefaultCategory();
+    }
+  }, [userCategories]);
 
   var deleteHandler = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(id, e) {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(id, e) {
       var api_token, config;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
               e.preventDefault();
               api_token = JSON.parse(localStorage.getItem('user_api'));
-              _context3.prev = 2;
+              _context4.prev = 2;
               config = {
                 headers: {
                   Authorization: "Bearer ".concat(api_token)
                 }
               };
-              _context3.next = 6;
+              _context4.next = 6;
               return axios["delete"]("/api/v1/Audience/delete/".concat(id), config);
 
             case 6:
               setAudience(audience.filter(function (item) {
                 return item.id !== id;
               }));
-              _context3.next = 11;
+              _context4.next = 11;
               break;
 
             case 9:
-              _context3.prev = 9;
-              _context3.t0 = _context3["catch"](2);
+              _context4.prev = 9;
+              _context4.t0 = _context4["catch"](2);
 
             case 11:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3, null, [[2, 9]]);
+      }, _callee4, null, [[2, 9]]);
     }));
 
     return function deleteHandler(_x, _x2) {
-      return _ref2.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }();
 
@@ -87567,45 +87598,45 @@ var HomeScreen = function HomeScreen(_ref) {
   };
 
   var filterAudience = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(id, e) {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(id, e) {
       var api_token, config, _yield$axios$get3, data;
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
               api_token = JSON.parse(localStorage.getItem('user_api'));
-              _context4.prev = 1;
+              _context5.prev = 1;
               config = {
                 headers: {
                   Authorization: "Bearer ".concat(api_token)
                 }
               };
-              _context4.next = 5;
+              _context5.next = 5;
               return axios.get("/api/v1/Audience/categoryFilter/".concat(id), config);
 
             case 5:
-              _yield$axios$get3 = _context4.sent;
+              _yield$axios$get3 = _context5.sent;
               data = _yield$axios$get3.data;
               setFilterAudience(id);
               setAudience(Object.values(data.data));
-              _context4.next = 13;
+              _context5.next = 13;
               break;
 
             case 11:
-              _context4.prev = 11;
-              _context4.t0 = _context4["catch"](1);
+              _context5.prev = 11;
+              _context5.t0 = _context5["catch"](1);
 
             case 13:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
         }
-      }, _callee4, null, [[1, 11]]);
+      }, _callee5, null, [[1, 11]]);
     }));
 
     return function filterAudience(_x3, _x4) {
-      return _ref3.apply(this, arguments);
+      return _ref4.apply(this, arguments);
     };
   }();
 
@@ -87969,21 +88000,22 @@ var RegisterScreen = function RegisterScreen(_ref) {
               _yield$axios$post = _context.sent;
               data = _yield$axios$post.data.data;
               localStorage.setItem('userInfo', JSON.stringify(data));
+              localStorage.setItem('user_api', JSON.stringify(data.api_token));
               history.push('/');
-              _context.next = 14;
+              _context.next = 15;
               break;
 
-            case 11:
-              _context.prev = 11;
+            case 12:
+              _context.prev = 12;
               _context.t0 = _context["catch"](2);
               _context.t0.response && setMessage(_context.t0.response.data.errors);
 
-            case 14:
+            case 15:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 11]]);
+      }, _callee, null, [[2, 12]]);
     }));
 
     return function submitHandler(_x) {
@@ -87991,7 +88023,9 @@ var RegisterScreen = function RegisterScreen(_ref) {
     };
   }();
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Header__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "\u062B\u0628\u062A \u0646\u0627\u0645"), message && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Message__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Header__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Container"], {
+    className: "bg-white text-dark text-right mt-3 pt-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "\u062B\u0628\u062A \u0646\u0627\u0645"), message && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Message__WEBPACK_IMPORTED_MODULE_4__["default"], {
     variant: "danger",
     ErrorsMessage: message
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Form"], {
@@ -88180,7 +88214,7 @@ var AddAudience = function AddAudience(_ref) {
       image = _useState10[0],
       setImage = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(userCategories[0]['id']),
       _useState12 = _slicedToArray(_useState11, 2),
       category_id = _useState12[0],
       setCategory_id = _useState12[1];
@@ -88189,6 +88223,11 @@ var AddAudience = function AddAudience(_ref) {
       _useState14 = _slicedToArray(_useState13, 2),
       formMessage = _useState14[0],
       setFormMessage = _useState14[1];
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState16 = _slicedToArray(_useState15, 2),
+      category_name = _useState16[0],
+      setCategory_name = _useState16[1];
 
   var submitHandler = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
@@ -88308,19 +88347,29 @@ var AddAudience = function AddAudience(_ref) {
     className: "form-group text-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "exampleFormControlSelect1"
-  }, "\u06AF\u0631\u0648\u0647 \u0645\u062E\u0627\u0637\u0628"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+  }, "\u06AF\u0631\u0648\u0647 \u0645\u062E\u0627\u0637\u0628"), userCategories.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     value: category_id || '',
     onChange: function onChange(e) {
       return setCategory_id(e.target.value);
     },
     className: "form-control dir-rtl content-category",
     id: "exampleFormControlSelect1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", null, "\u0627\u0646\u062A\u062E\u0627\u0628 \u062F\u0633\u062A\u0647 \u0628\u0646\u062F\u06CC"), userCategories.map(function (el) {
+  }, userCategories.map(function (el) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
       value: el.id,
       key: el.id
     }, el.category_name);
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "\u0627\u0641\u0632\u0648\u062F\u0646 \u062F\u0633\u062A\u0647 \u0628\u0646\u062F\u06CC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group text-right mt-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    value: category_name || '',
+    onChange: function onChange(e) {
+      return setCategory_name(e.target.value);
+    },
+    type: "text",
+    className: "form-control",
+    id: "Content-phone"
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "submit",
     className: "btn btn-info w-100 btn1"
   }, "\u0627\u0641\u0632\u0648\u062F\u0646"))));
