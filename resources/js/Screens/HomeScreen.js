@@ -8,6 +8,8 @@ import Image from "react-bootstrap/Image";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import UpdateAudience from "../components/UpdateAudience";
+import ShareAudience from "../components/ShareAudience";
+import {Container} from "react-bootstrap";
 
 
 const HomeScreen = ({history}) => {
@@ -20,9 +22,11 @@ const HomeScreen = ({history}) => {
     const [userInfo, setUserInfo] = useState('')
     const [audienceId, setAudienceId] = useState('')
     const [show, setShow] = useState(false);
+    const [shareShow, setShareShow] = useState(false);
     const [audienceUpdateSelected, setAudienceUpdateSelected] = useState('')
+    const [audienceShareSelected, setAudienceShareSelected] = useState('')
     const [filterdAudience, setFilterAudience] = useState(0)
-
+    const [userSelected , setUserSelected] = useState('')
     useEffect(() => {
 
         if (localStorage.getItem('userInfo') === null) {
@@ -74,7 +78,7 @@ const HomeScreen = ({history}) => {
     }, [setAudience, setSharedAudience, setUserInfo, setNotApprovedAudience, setLoading])
 
     useEffect(() => {
-        console.log(userCategories)
+
         const api_token = JSON.parse(localStorage.getItem('user_api'))
         if (userCategories.length === 0) {
             async function CreateDefaultCategory() {
@@ -120,10 +124,16 @@ const HomeScreen = ({history}) => {
         }
     }
     const handleClose = () => setShow(false);
+    const handleShareClose = () => setShareShow(false);
     const handleShow = (id) => {
         setShow(true)
         setAudienceId(id)
         setAudienceUpdateSelected(audience.find(el => el.id === id))
+
+    };
+    const shareHandleShow = (id) => {
+        setShareShow(true)
+        setAudienceShareSelected(id)
 
     };
     const filterAudience = async (id, e) => {
@@ -147,11 +157,28 @@ const HomeScreen = ({history}) => {
         }
 
     }
+    const shareHandler =async (id)=>{
+        const api_token = JSON.parse(localStorage.getItem('user_api'))
 
+        try {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${api_token}`
+                }
+            }
+
+            await axios.get(`/api/v1/Audience/share/${userSelected}/${id}`, config)
+
+
+        } catch (error) {
+            //  error.response && setMessage(error.response.data.errors)
+
+        }
+    }
     return (
         <>
             <Header/>
-
+            {message && <Message variant='danger' ErrorsMessage={message}/>}
             {loading ? <Loader/> :
                 <div className="jumbotron mt-3 jum">
 
@@ -191,12 +218,17 @@ const HomeScreen = ({history}) => {
                                     audience.map((el) => (
                                         <tr key={uuid_v4()}>
                                             <td className='text-center' key={uuid_v4()} className="text-center">
-                                                <button onClick={(e) => handleShow(el.id)} className='btn'><i
-                                                    className="far text-white fa-edit mr-3"> </i></button>
 
-                                                <button className='btn btn-outline-danger'
+                                                <button onClick={(e) => handleShow(el.id)} className='btn btn-sm'><i
+                                                    className="far text-white fa-edit "> </i></button>
+
+                                                <button className='btn btn-sm'
                                                         onClick={(e) => deleteHandler(el.id, e)}><i
                                                     className="fas text-danger fa-trash"> </i></button>
+
+                                                <button className='btn btn-sm'
+                                                        onClick={(e) => shareHandleShow(el.id, e)}><i
+                                                    className="fas fa-share-alt"> </i></button>
                                             </td>
                                             <td className='text-center'
                                                 key={uuid_v4()}>{el.category_audience.category_name}</td>
@@ -205,7 +237,7 @@ const HomeScreen = ({history}) => {
                                             <td className='text-center' key={uuid_v4()}>{el.email}</td>
                                             <td className='text-center' key={uuid_v4()}>
                                                 <div
-                                                    className='d-flex flex-nowrap justify-content-end align-items-center'>{el.name}<Image
+                                                    className='d-flex flex-wrap-reverse justify-content-end align-items-center'>{el.name}<Image
                                                     className='samll-bg' fluid src={`/uploads/${el.image}`}/></div>
                                             </td>
                                         </tr>
@@ -236,6 +268,22 @@ const HomeScreen = ({history}) => {
 
                         </Modal.Footer>
                     </Modal>
+
+
+                    <Modal size="lg" show={shareShow} onHide={handleShareClose}>
+
+                        <Modal.Body>
+                             <ShareAudience apiToken={userInfo.api_token}
+                                            AudienceShareSelectedId={audienceShareSelected} />
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleShareClose}>
+                                لغو
+                            </Button>
+
+                        </Modal.Footer>
+                    </Modal>
+
                 </div>
             }
         </>

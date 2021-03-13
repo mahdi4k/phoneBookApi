@@ -53,10 +53,12 @@ class UserController extends Controller
 
     public function allUser()
     {
-        if (Gate::allows('isAdmin')){
-            $allUser =User::all();
-            return $allUser;
-        }
+
+        $allUser = User::all();
+        return response()->json([
+            'allUser' => $allUser
+        ]);
+
 
     }
 }

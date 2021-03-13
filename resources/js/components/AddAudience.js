@@ -65,11 +65,11 @@ const AddAudience = ({userCategories, apiToken,history}) => {
                                id="Content-name"/>
                     </div>
                     <div className="form-group text-right mt-5">
-                        <label htmlFor="Content-name">ایمیل</label>
+                        <label htmlFor="Content-email">ایمیل</label>
                         <input value={email || ''}
                                onChange={(e) => setEmail(e.target.value)}
                                type="email" className="form-control"
-                               id="Content-name"/>
+                               id="Content-email"/>
                     </div>
 
                     <div className="form-group text-right mt-3">

@@ -46,28 +46,28 @@ const RegisterScreen = ({location, history}) => {
 
                    <Form.Group controlId='name'>
                        <Form.Label>نام</Form.Label>
-                       <Form.Control type='text' placeholder='Enter name' value={name}
+                       <Form.Control type='text'  value={name}
                                      onChange={(e) => setName(e.target.value)}>
                        </Form.Control>
                    </Form.Group>
 
                    <Form.Group controlId='email'>
                        <Form.Label>ایمیل</Form.Label>
-                       <Form.Control type='email' placeholder='Enter email' value={email}
+                       <Form.Control type='email'  value={email}
                                      onChange={(e) => setEmail(e.target.value)}>
                        </Form.Control>
                    </Form.Group>
 
                    <Form.Group controlId='password'>
                        <Form.Label>رمز عبور</Form.Label>
-                       <Form.Control type='password' placeholder='Enter password' value={password}
+                       <Form.Control type='password'  value={password}
                                      onChange={(e) => setPassword(e.target.value)}>
                        </Form.Control>
                    </Form.Group>
 
                    <Form.Group controlId='confirmPassword'>
                        <Form.Label>تایید رمز عبور</Form.Label>
-                       <Form.Control type='password' placeholder='Enter confirm password' value={password_confirmation}
+                       <Form.Control type='password' value={password_confirmation}
                                      onChange={(e) => setPassword_confirmation(e.target.value)}>
                        </Form.Control>
                    </Form.Group>
@@ -82,7 +82,7 @@ const RegisterScreen = ({location, history}) => {
                    <Col>
 
                        <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
-                           ثبت نام
+                           ورود
                        </Link>
                    </Col>
                </Row>

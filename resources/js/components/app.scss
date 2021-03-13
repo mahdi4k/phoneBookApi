@@ -68,6 +68,7 @@ body {
 }
 .table td{
     color: white;
+    vertical-align: middle;
 }
 .samll-bg{
     width: 45px;
@@ -97,3 +98,6 @@ body {
     text-align : right
  }
 
+.dropdown-item{
+    text-align: right;
+}

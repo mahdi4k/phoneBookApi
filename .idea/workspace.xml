@@ -21,11 +21,15 @@
   <component name="ChangeListManager">
     <list default="true" id="d218347e-7e45-49f6-bdf0-6e0127355b80" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/v1/AudienceCategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/v1/AudienceCategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/v1/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/v1/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Screens/HomeScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Screens/RegisterScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Screens/RegisterScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/AddAudience.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AddAudience.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +38,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -200,24 +202,24 @@
       <workItem from="1615138690865" duration="11072000" />
       <workItem from="1615271156657" duration="18212000" />
       <workItem from="1615574383216" duration="6013000" />
+      <workItem from="1615615178230" duration="18656000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="580" y="170" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1615219655045">
@@ -247,20 +249,20 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1615478544443" />
-    <state width="498" height="446" key="SwitcherDM" timestamp="1615579306820">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="498" height="398" key="SwitcherDM" timestamp="1615633723831">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="498" height="398" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1615288332966" />
+    <state width="498" height="398" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1615633723831" />
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1615579306820" />
     <state x="646" y="236" width="758" height="568" key="find.popup" timestamp="1615577327606">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="460" y="162" width="555" height="566" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1614153261831" />
     <state x="646" y="236" width="758" height="568" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1615577327606" />
-    <state x="476" y="231" key="run.anything.popup" timestamp="1615489212926">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1615631458894">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1614153945818" />
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1615631458894" />
     <state x="476" y="231" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1615489212926" />
     <state x="443" y="158" width="479" height="475" key="search.everywhere.popup" timestamp="1615272196750">
       <screen x="0" y="0" width="1366" height="728" />

@@ -31,7 +31,7 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
         Route::get('/Audience/{audience}', 'AudienceController@edit');
         Route::put('/Audience/update/{id}', 'AudienceController@update');
         Route::delete('/Audience/delete/{id}', 'AudienceController@delete');
-        Route::get('/Audience/share/{user_id}/{audience_id}', 'AudienceController@share');
+        Route::post('/Audience/share/{user_id}/{audience_id}', 'AudienceController@share');
         Route::get('/Audience/approve/{id}', 'AudienceController@approveAudience');
         Route::get('/Audience/categoryFilter/{id}', 'AudienceController@categoryFilter');
 
@@ -44,6 +44,5 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
         Route::get('/admin/user/deactivate/{id}', 'AdminController@deactivate ');
         Route::get('/admin/user/activate/{id}', 'AdminController@activate');
 
-
-    });
+     });
 });
