@@ -79,8 +79,8 @@ const Header = () => {
                                     </Nav.Link>
                                 </LinkContainer>
                             }
-                            {userInfo && userInfo.isAdmin && (
-                                <NavDropdown title='Admin' id='adminmenu'>
+                            {userInfo && userInfo.role === 'admin' && (
+                                <NavDropdown title='ادمین' id='adminmenu'>
                                     <LinkContainer to='/admin/userlist'>
                                         <NavDropdown.Item>
                                             کابران

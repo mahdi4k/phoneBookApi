@@ -6,6 +6,7 @@ import './app.scss'
 import LoginScreen from "../Screens/LoginScreen";
 import RegisterScreen from "../Screens/RegisterScreen";
 import HomeScreen from "../Screens/HomeScreen";
+import UserList from "../Screens/UserList";
 
 function Main() {
     return (
@@ -17,6 +18,7 @@ function Main() {
                     <Route  path='/login' component={LoginScreen}/>
                     <Route   path='/' component={HomeScreen} exact />
                     <Route path='/register' component={RegisterScreen}/>
+                    <Route path='/userlist' component={UserList}/>
                 </Switch>
 
         </Router>

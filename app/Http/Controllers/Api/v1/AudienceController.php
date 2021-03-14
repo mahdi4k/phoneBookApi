@@ -148,7 +148,7 @@ class AudienceController extends Controller
             'email' => $sAudience->email,
             'phoneNumber' => $sAudience->phoneNumber,
             'image' => $sAudience->image,
-            'status' => 0,
+            'status' => 1,
             'category_id' => $sAudience->category_id,
             'user_id' => $user_id,
             'shared' => $this->userAuth->name
