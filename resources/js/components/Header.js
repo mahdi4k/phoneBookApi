@@ -81,7 +81,7 @@ const Header = () => {
                             }
                             {userInfo && userInfo.role === 'admin' && (
                                 <NavDropdown title='ادمین' id='adminmenu'>
-                                    <LinkContainer to='/admin/userlist'>
+                                    <LinkContainer to='/userlist'>
                                         <NavDropdown.Item>
                                             کابران
                                         </NavDropdown.Item>

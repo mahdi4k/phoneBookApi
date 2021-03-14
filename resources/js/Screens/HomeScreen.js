@@ -1,33 +1,26 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import AddAudience from "../components/AddAudience";
 import Loader from "../components/Loader";
 import {v4 as uuid_v4} from "uuid";
 import Header from "../components/Header";
 import Message from "../components/Message";
-import Image from "react-bootstrap/Image";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import UpdateAudience from "../components/UpdateAudience";
-import ShareAudience from "../components/ShareAudience";
+import AudienceList from "../components/AudienceList";
+import Alert from "react-bootstrap/Alert";
 
 
 const HomeScreen = ({history}) => {
     const [message, setMessage] = useState('')
-    const [audience, setAudience] = useState({})
+    const [filteredAudience, setFilteredAudience] = useState({})
     const [userCategories, setUserCategories] = useState({})
     const [sharedAudience, setSharedAudience] = useState({})
     const [notApprovedAudience, setNotApprovedAudience] = useState({})
     const [loading, setLoading] = useState(true)
     const [userInfo, setUserInfo] = useState('')
-    const [audienceId, setAudienceId] = useState('')
-    const [show, setShow] = useState(false);
-    const [shareShow, setShareShow] = useState(false);
-    const [audienceUpdateSelected, setAudienceUpdateSelected] = useState('')
-    const [audienceShareSelected, setAudienceShareSelected] = useState('')
-    const [filterdAudience, setFilterAudience] = useState(0)
-    const [userSelected , setUserSelected] = useState('')
-    useEffect(() => {
+    const [filterdAudienceID, setFilterAudienceID] = useState(0)
+    const [userSelected, setUserSelected] = useState('')
+    const [api_token, setApiToken] = useState('')
 
+    useEffect(() => {
         if (localStorage.getItem('userInfo') === null) {
             history.push('/login')
         } else {
@@ -35,24 +28,7 @@ const HomeScreen = ({history}) => {
         }
 
         const api_token = JSON.parse(localStorage.getItem('user_api'))
-
-        async function getAudience() {
-            try {
-                const config = {
-                    headers: {
-                        Authorization: `Bearer ${api_token}`
-                    }
-                }
-
-                const {data} = await axios.get(`/api/v1/Audience`, config)
-                setAudience(Object.values(data.data))
-                setNotApprovedAudience(Object.values(data.audienceNotApproved))
-                setSharedAudience(Object.values(data.sharedAudience))
-
-            } catch (error) {
-                error.response && setMessage(error.response.data.errors)
-            }
-        }
+        setApiToken(api_token)
 
         async function getUserCategories() {
             try {
@@ -71,10 +47,9 @@ const HomeScreen = ({history}) => {
             }
         }
 
-        getAudience()
         getUserCategories()
 
-    }, [setAudience, setSharedAudience, setUserInfo, setNotApprovedAudience, setLoading])
+    }, [setSharedAudience, setUserInfo, setNotApprovedAudience, setLoading])
 
     useEffect(() => {
 
@@ -105,36 +80,7 @@ const HomeScreen = ({history}) => {
     }, [userCategories])
 
 
-    const deleteHandler = async (id, e) => {
-        e.preventDefault()
-        const api_token = JSON.parse(localStorage.getItem('user_api'))
-        try {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${api_token}`
-                }
-            }
 
-            await axios.delete(`/api/v1/Audience/delete/${id}`, config)
-            setAudience(audience.filter(item => item.id !== id))
-        } catch (error) {
-            //  error.response && setMessage(error.response.data.errors)
-
-        }
-    }
-    const handleClose = () => setShow(false);
-    const handleShareClose = () => setShareShow(false);
-    const handleShow = (id) => {
-        setShow(true)
-        setAudienceId(id)
-        setAudienceUpdateSelected(audience.find(el => el.id === id))
-
-    };
-    const shareHandleShow = (id) => {
-        setShareShow(true)
-        setAudienceShareSelected(id)
-
-    };
     const filterAudience = async (id, e) => {
 
         const api_token = JSON.parse(localStorage.getItem('user_api'))
@@ -147,8 +93,8 @@ const HomeScreen = ({history}) => {
             }
 
             const {data} = await axios.get(`/api/v1/Audience/categoryFilter/${id}`, config)
-            setFilterAudience(id)
-            setAudience(Object.values(data.data))
+            setFilterAudienceID(id)
+            setFilteredAudience(Object.values(data.data))
 
         } catch (error) {
             //  error.response && setMessage(error.response.data.errors)
@@ -156,7 +102,7 @@ const HomeScreen = ({history}) => {
         }
 
     }
-    const shareHandler =async (id)=>{
+    const shareHandler = async (id) => {
         const api_token = JSON.parse(localStorage.getItem('user_api'))
 
         try {
@@ -178,7 +124,7 @@ const HomeScreen = ({history}) => {
         <>
             <Header/>
             {message && <Message variant='danger' ErrorsMessage={message}/>}
-            {loading ? <Loader/> :
+            {loading ? <Loader/> : userInfo.active === 1 ?
                 <div className="jumbotron mt-3 jum">
 
                     <div className="row flex-row-reverse  ">
@@ -190,9 +136,9 @@ const HomeScreen = ({history}) => {
                             <div id="content-filter" className="form-group text-right">
                                 <label htmlFor="content-filter">مخاطبین</label>
 
-                                <select value={filterdAudience} onChange={e => filterAudience(e.target.value, e)}
-                                        className="form-control dir-rtl content-category w-50 ml-auto"
-                                >
+                                <select value={filterdAudienceID} onChange={e => filterAudience(e.target.value, e)}
+                                        className="form-control dir-rtl content-category w-50 ml-auto">
+
                                     <option key={uuid_v4()} value={0}>همه گروه ها</option>
                                     {userCategories.map(el => (
                                         <option value={el.id} key={uuid_v4()}>{el.category_name}</option>
@@ -214,33 +160,9 @@ const HomeScreen = ({history}) => {
                                 <tbody>
 
                                 {
-                                    audience.map((el) => (
-                                        <tr key={uuid_v4()}>
-                                            <td className='text-center' key={uuid_v4()} className="text-center">
-
-                                                <button onClick={(e) => handleShow(el.id)} className='btn btn-sm'><i
-                                                    className="far text-white fa-edit "> </i></button>
-
-                                                <button className='btn btn-sm'
-                                                        onClick={(e) => deleteHandler(el.id, e)}><i
-                                                    className="fas text-danger fa-trash"> </i></button>
-
-                                                <button className='btn btn-sm'
-                                                        onClick={(e) => shareHandleShow(el.id, e)}><i
-                                                    className="fas fa-share-alt"> </i></button>
-                                            </td>
-                                            <td className='text-center'
-                                                key={uuid_v4()}>{el.category_audience.category_name}</td>
-
-                                            <td className='text-center' key={uuid_v4()}>{el.phoneNumber}</td>
-                                            <td className='text-center' key={uuid_v4()}>{el.email}</td>
-                                            <td className='text-center' key={uuid_v4()}>
-                                                <div
-                                                    className='d-flex flex-wrap-reverse justify-content-end align-items-center'>{el.name}<Image
-                                                    className='samll-bg' fluid src={`/uploads/${el.image}`}/></div>
-                                            </td>
-                                        </tr>
-                                    ))}
+                                    <AudienceList filteredAudience={filteredAudience} userCategories={userCategories}
+                                                  api_token={api_token} userInfo={userInfo}/>
+                                }
 
 
                                 </tbody>
@@ -253,37 +175,13 @@ const HomeScreen = ({history}) => {
 
 
                     </div>
-                    <Modal size="lg" show={show} onHide={handleClose}>
-                        <Modal.Header closeButton>
 
-                        </Modal.Header>
-                        <Modal.Body><UpdateAudience audienceSelected={audienceUpdateSelected}
-                                                    apiToken={userInfo.api_token}
-                                                    userCategories={userCategories}/></Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                لغو
-                            </Button>
-
-                        </Modal.Footer>
-                    </Modal>
-
-
-                    <Modal size="lg" show={shareShow} onHide={handleShareClose}>
-
-                        <Modal.Body>
-                             <ShareAudience apiToken={userInfo.api_token}
-                                            AudienceShareSelectedId={audienceShareSelected} />
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleShareClose}>
-                                لغو
-                            </Button>
-
-                        </Modal.Footer>
-                    </Modal>
 
                 </div>
+                :
+               <div className='col-6 mt-4 mx-auto'>
+                   <Alert variant='danger' >کاربری شما غیر فعال شده است</Alert>
+               </div>
             }
         </>
 

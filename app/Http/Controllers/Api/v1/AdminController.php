@@ -27,8 +27,11 @@ class AdminController extends Controller
             $users->update([
                 'active' => 0
             ]);
+            $allUsers = User::all();
+
             return response()->json([
-                'message' => 'کاربر با موفقیت غیر فعال شد'
+                'message' => 'کاربر با موفقیت غیر فعال شد',
+                'allUser'=>$allUsers
             ]);
         }
     }
@@ -40,8 +43,10 @@ class AdminController extends Controller
             $users->update([
                 'active' => 1
             ]);
+            $allUsers = User::all();
             return response()->json([
-                'message' => 'کاربر با موفقیت فعال شد'
+                'message' => 'کاربر با موفقیت فعال شد',
+                'allUser'=>$allUsers
             ]);
         }
     }
