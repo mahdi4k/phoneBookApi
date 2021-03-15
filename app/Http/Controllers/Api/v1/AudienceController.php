@@ -56,14 +56,13 @@ class AudienceController extends Controller
      * @param Filesystem $filesystem
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(AudienceRequest $request, Filesystem $filesystem)
+    public function store(AudienceRequest $request)
     {
         if ($request->image == 'default.jpg'){
             $filename = 'default.jpg';
-            $imagePath ='resources/js/upload';
 
         } else{
-            list($filename, $imagePath) = $this->imgUpload($request);
+            list($filename) = $this->imgUpload($request);
         }
         $audience = Audience::create([
             'name' => $request->name,
@@ -75,7 +74,7 @@ class AudienceController extends Controller
             'user_id' => $this->userAuth->id
         ]);
 
-        return $this->ResponseJson($audience, $imagePath, $filename, 'مخاطب با موفقیت ثبت شد');
+        return $this->ResponseJson($audience, $filename, 'مخاطب با موفقیت ثبت شد');
     }
 
     /**
@@ -95,19 +94,17 @@ class AudienceController extends Controller
         }
     }
 
-    public function update(AudienceRequest $request, $id, Filesystem $filesystem)
+    public function update(AudienceRequest $request, $id)
     {
-
 
         $audience = Audience::findOrFail($id);
 
-        if ($request->image == 'default.jpg'){
-            $filename = 'default.jpg';
-            $imagePath ='resources/js/upload';
-
-        } else{
-            list($filename, $imagePath) = $this->imgUpload($request);
+        if (Str::startsWith($request->image,"data:image")){
+            list($filename) = $this->imgUpload($request);
+        }else{
+            $filename = $request->image;
         }
+
         $audience->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -117,7 +114,7 @@ class AudienceController extends Controller
             'category_id' => $request->category_id,
             'user_id' => $this->userAuth->id
         ]);
-        return $this->ResponseJson($audience, $imagePath, $filename, 'مخاطب با موفقیت ویرایش شد');
+        return $this->ResponseJson($audience, $filename, 'مخاطب با موفقیت ویرایش شد');
     }
 
     /**
@@ -204,12 +201,11 @@ class AudienceController extends Controller
      * @param $message
      * @return \Illuminate\Http\JsonResponse
      */
-    public function ResponseJson($audience, $imagePath, $filename, $message)
+    public function ResponseJson($audience, $filename, $message)
     {
         return response()->json([
             'message' => $message,
             'data' => $audience,
-            'imagePath' => url("{$imagePath}/{$filename}")
         ], 200);
     }
 
