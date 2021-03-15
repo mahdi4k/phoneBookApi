@@ -13,7 +13,6 @@ use Tests\TestCase;
 
 class AudienceTest extends TestCase
 {
-    use RefreshDatabase;
 
     /**
      * A basic feature test example.
@@ -37,14 +36,14 @@ class AudienceTest extends TestCase
         $user = factory(User::class)->create();
         Storage::fake('avatars');
 
-        $file = UploadedFile::fake()->image('avatar.jpg');
+        $file = UploadedFile::fake()->image('default.jpg');
         $this->actingAs($user, 'api');
         $formData = [
             'name' => 'john',
             'status' => 1,
             'phoneNumber' => '09351510925',
             'email' => 'ali@yahoo.com',
-            'image' => $file,
+            'image' => 'default.jpg',
             'user_id' => 1,
             'category_id' => 1
 
@@ -60,14 +59,14 @@ class AudienceTest extends TestCase
         $user = factory(User::class)->create();
          Storage::fake('avatars');
 
-        $file = UploadedFile::fake()->image('myAvatar.jpg');
+        $file = UploadedFile::fake()->image('default.jpg');
         $this->actingAs($user, 'api');
         $formData = [
             'name' => 'john',
             'status' => 1,
             'phoneNumber' => '09351510925',
             'email' => 'ali@yahoo.com',
-            'image' => $file,
+            'image' => 'default.jpg',
             'user_id' => 1,
             'category_id' => 1
 
@@ -82,6 +81,6 @@ class AudienceTest extends TestCase
         $user = factory(User::class)->create();
         $this->actingAs($user, 'api');
 
-        $this->json('delete', '/api/v1/Audience/delete/1')->assertStatus(200);
+        $this->json('delete', '/api/v1/Audience/delete/3')->assertStatus(200);
     }
 }

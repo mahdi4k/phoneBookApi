@@ -21,9 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d218347e-7e45-49f6-bdf0-6e0127355b80" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/v1/AudienceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/v1/AudienceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/UpdateAudience.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/UpdateAudience.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/AudienceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AudienceTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +200,7 @@
       <workItem from="1615654136547" duration="16734000" />
       <workItem from="1615741384271" duration="16000" />
       <workItem from="1615741440836" duration="25000" />
-      <workItem from="1615824364650" duration="3341000" />
+      <workItem from="1615824364650" duration="6272000" />
     </task>
     <servers />
   </component>
@@ -250,11 +248,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1615478544443" />
-    <state width="498" height="446" key="SwitcherDM" timestamp="1615827902167">
+    <state width="498" height="446" key="SwitcherDM" timestamp="1615834763990">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="398" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1615633723831" />
-    <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1615827902167" />
+    <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1615834763990" />
     <state x="646" y="236" width="758" height="568" key="find.popup" timestamp="1615577327606">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
