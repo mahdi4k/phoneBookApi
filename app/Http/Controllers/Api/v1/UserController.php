@@ -43,6 +43,7 @@ class UserController extends Controller
             'name' => $validData['name'],
             'email' => $validData['email'],
             'password' => bcrypt($validData['password']),
+            'active' => 1,
             'api_token' => Str::random(100)
         ]);
 
