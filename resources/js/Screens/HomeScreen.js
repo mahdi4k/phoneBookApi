@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Message from "../components/Message";
 import AudienceList from "../components/AudienceList";
 import Alert from "react-bootstrap/Alert";
+import AudienceDataTable from "../components/AudienceDataTable";
 
 
 const HomeScreen = ({history}) => {
@@ -18,6 +19,7 @@ const HomeScreen = ({history}) => {
     const [userInfo, setUserInfo] = useState('')
     const [filterdAudienceID, setFilterAudienceID] = useState(0)
     const [userSelected, setUserSelected] = useState('')
+    const [userAddedAudience, setUserAddAudience] = useState({})
     const [api_token, setApiToken] = useState('')
 
     useEffect(() => {
@@ -102,24 +104,7 @@ const HomeScreen = ({history}) => {
         }
 
     }
-    const shareHandler = async (id) => {
-        const api_token = JSON.parse(localStorage.getItem('user_api'))
 
-        try {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${api_token}`
-                }
-            }
-
-            await axios.get(`/api/v1/Audience/share/${userSelected}/${id}`, config)
-
-
-        } catch (error) {
-            //  error.response && setMessage(error.response.data.errors)
-
-        }
-    }
     return (
         <>
             <Header/>
@@ -130,7 +115,8 @@ const HomeScreen = ({history}) => {
                     <div className="row flex-row-reverse  ">
 
                         {/*audience form */}
-                        <AddAudience apiToken={userInfo.api_token} userCategories={userCategories}/>
+                        <AddAudience setUserAddAudience={setUserAddAudience} apiToken={userInfo.api_token}
+                                     userCategories={userCategories}/>
 
                         <div className="col-lg-9">
                             <div id="content-filter" className="form-group text-right">
@@ -146,29 +132,8 @@ const HomeScreen = ({history}) => {
 
                                 </select>
                             </div>
-                            <table id="myTable" className="table text-justify">
-
-                                <thead className="tableh1">
-                                <tr>
-                                    <th className="text-center font-weight-bold"> تنظیمات</th>
-                                    <th className="text-center font-weight-bold">دسته بندی</th>
-                                    <th className="text-center font-weight-bold">شماره تلفن</th>
-                                    <th className="text-center font-weight-bold">ایمیل</th>
-                                    <th className="text-center font-weight-bold">نام</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                {
-                                    <AudienceList filteredAudience={filteredAudience} userCategories={userCategories}
-                                                  api_token={api_token} userInfo={userInfo}/>
-                                }
-
-
-                                </tbody>
-
-
-                            </table>
+                            <AudienceDataTable filteredAudience={filteredAudience} userCategories={userCategories}
+                                               api_token={api_token} userInfo={userInfo} userAddedAudience={userAddedAudience}/>
 
 
                         </div>

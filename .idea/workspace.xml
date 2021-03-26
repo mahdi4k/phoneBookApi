@@ -21,7 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d218347e-7e45-49f6-bdf0-6e0127355b80" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/AudienceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AudienceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Screens/HomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/app.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +204,8 @@
       <workItem from="1615654136547" duration="16734000" />
       <workItem from="1615741384271" duration="16000" />
       <workItem from="1615741440836" duration="25000" />
-      <workItem from="1615824364650" duration="6272000" />
+      <workItem from="1615824364650" duration="6630000" />
+      <workItem from="1616780182937" duration="3052000" />
     </task>
     <servers />
   </component>
@@ -236,10 +241,10 @@
     </state>
     <state x="492" y="46" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1/0.0.1366.728@0.0.1366.728" timestamp="1614156742036" />
     <state x="692" y="66" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1/0.0.1920.1040@0.0.1920.1040" timestamp="1615549143105" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1615741464898">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1615835190124">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1615741464898" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1615835190124" />
     <state x="794" y="439" key="NewPhpFileDialog" timestamp="1614269713329">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -248,11 +253,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1615478544443" />
-    <state width="498" height="446" key="SwitcherDM" timestamp="1615834763990">
+    <state width="498" height="446" key="SwitcherDM" timestamp="1616783236132">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="398" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1615633723831" />
-    <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1615834763990" />
+    <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1616783236132" />
     <state x="646" y="236" width="758" height="568" key="find.popup" timestamp="1615577327606">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
